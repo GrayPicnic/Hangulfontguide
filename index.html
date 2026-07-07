@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="Tkwo3cxIBlo6LFIes0GmxzOxayfSf6uXq8KVGGViGmI" />
+<script>
+// Site always starts in English by default. Only an explicit prior choice
+// (saved when the user clicks the 한국어/EN toggle) switches it to Korean.
+(function(){
+  try{
+    var saved = localStorage.getItem('hfgd-lang');
+    if(saved === 'ko') document.documentElement.classList.add('ko');
+  }catch(e){}
+})();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hangul for Game Devs — Free Korean Fonts, Licensing & Embedding Guide</title>
+<meta name="description" content="A field guide for game developers: free Korean (Hangul) fonts by use case, which licenses actually allow embedding in a shipped build, and how to subset and embed Hangul in Unity, Unreal, and Godot.">
+<meta name="keywords" content="korean font, hangul font, free korean font, korean font for games, korean font license, embed korean font unity, hangul font game, korean font commercial use, korean pixel font">
+<link rel="canonical" href="https://hangulefontguide.netlify.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hangul for Game Devs — Free Korean Fonts, Licensing & Embedding Guide">
+<meta property="og:description" content="Free Korean fonts by use case, which licenses allow embedding in a shipped game build, and how to subset and embed Hangul in Unity, Unreal, and Godot.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hangul for Game Devs — Free Korean Fonts, Licensing & Embedding Guide">
+<meta name="twitter:description" content="Free Korean fonts by use case, which licenses allow embedding in a shipped game build, and how to subset and embed Hangul in Unity, Unreal, and Godot.">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAKOmlDQ1BzUkdCIElFQzYxOTY2LTIuMQAASImdU3dYU3cXPvfe7MFKiICMsJdsgQAiI+whU5aoxCRAGCGGBNwDERWsKCqyFEWqAhasliF1IoqDgqjgtiBFRK3FKi4cfaLP09o+/b6vX98/7n2f8zvn3t9533MAaAEhInEWqgKQKZZJI/292XHxCWxiD6BABgLYAfD42ZLQKL9oAIBAXy47O9LfG/6ElwOAKN5XrQLC2Wz4/6DKl0hlAEg4ADgIhNl8ACQfADJyZRJFfBwAmAvSFRzFKbg0Lj4BANVQ8JTPfNqnnM/cU8EFmWIBAKq4s0SQKVDwTgBYnyMXCgCwEAAoyBEJcwGwawBglCHPFAFgrxW1mUJeNgCOpojLhPxUAJwtANCk0ZFcANwMABIt5Qu+4AsuEy6SKZriZkkWS0UpqTK2Gd+cbefiwmEHCHMzhDKZVTiPn86TCtjcrEwJT7wY4HPPn6Cm0JYd6Mt1snNxcrKyt7b7Qqj/evgPofD2M3se8ckzhNX9R+zv8rJqADgTANjmP2ILygFa1wJo3PojZrQbQDkfoKX3i35YinlJlckkrjY2ubm51iIh31oh6O/4nwn/AF/8z1rxud/lYfsIk3nyDBlboRs/KyNLLmVnS3h8Idvqr0P8rwv//h7TIoXJQqlQzBeyY0TCXJE4hc3NEgtEMlGWmC0S/ycT/2XZX/B5rgGAUfsBmPOtQaWXCdjP3YBjUAFL3KVw/XffQsgxoNi8WL3Rz3P/CZ+2+c9AixWPbFHKpzpuZDSbL5fmfD5TrCXggQLKwARN0AVDMAMrsAdncANP8IUgCINoiId5wIdUyAQp5MIyWA0FUASbYTtUQDXUQh00wmFohWNwGs7BJbgM/XAbBmEEHsM4vIRJBEGICB1hIJqIHmKMWCL2CAeZifgiIUgkEo8kISmIGJEjy5A1SBFSglQge5A65FvkKHIauYD0ITeRIWQM+RV5i2IoDWWiOqgJaoNyUC80GI1G56Ip6EJ0CZqPbkLL0Br0INqCnkYvof3oIPoYncAAo2IsTB+zwjgYFwvDErBkTIqtwAqxUqwGa8TasS7sKjaIPcHe4Ag4Bo6Ns8K54QJws3F83ELcCtxGXAXuAK4F14m7ihvCjeM+4Ol4bbwl3hUfiI/Dp+Bz8QX4Uvw+fDP+LL4fP4J/SSAQWARTgjMhgBBPSCMsJWwk7CQ0EU4R+gjDhAkikahJtCS6E8OIPKKMWEAsJx4kniReIY4QX5OoJD2SPcmPlEASk/JIpaR60gnSFdIoaZKsQjYmu5LDyALyYnIxuZbcTu4lj5AnKaoUU4o7JZqSRllNKaM0Us5S7lCeU6lUA6oLNYIqoq6illEPUc9Th6hvaGo0CxqXlkiT0zbR9tNO0W7SntPpdBO6Jz2BLqNvotfRz9Dv0V8rMZSslQKVBEorlSqVWpSuKD1VJisbK3spz1NeolyqfES5V/mJClnFRIWrwlNZoVKpclTlusqEKkPVTjVMNVN1o2q96gXVh2pENRM1XzWBWr7aXrUzasMMjGHI4DL4jDWMWsZZxgiTwDRlBjLTmEXMb5g9zHF1NfXp6jHqi9Qr1Y+rD7IwlgkrkJXBKmYdZg2w3k7RmeI1RThlw5TGKVemvNKYquGpIdQo1GjS6Nd4q8nW9NVM19yi2ap5VwunZaEVoZWrtUvrrNaTqcypblP5UwunHp56SxvVttCO1F6qvVe7W3tCR1fHX0eiU65zRueJLkvXUzdNd5vuCd0xPYbeTD2R3ja9k3qP2OpsL3YGu4zdyR7X19YP0Jfr79Hv0Z80MDWYbZBn0GRw15BiyDFMNtxm2GE4bqRnFGq0zKjB6JYx2ZhjnGq8w7jL+JWJqUmsyTqTVpOHphqmgaZLTBtM75jRzTzMFprVmF0zJ5hzzNPNd5pftkAtHC1SLSotei1RSydLkeVOy75p+Gku08TTaqZdt6JZeVnlWDVYDVmzrEOs86xbrZ/aGNkk2Gyx6bL5YOtom2Fba3vbTs0uyC7Prt3uV3sLe759pf01B7qDn8NKhzaHZ9Mtpwun75p+w5HhGOq4zrHD8b2Ts5PUqdFpzNnIOcm5yvk6h8kJ52zknHfBu3i7rHQ55vLG1clV5nrY9Rc3K7d0t3q3hzNMZwhn1M4Ydjdw57nvcR+cyZ6ZNHP3zEEPfQ+eR43HfU9DT4HnPs9RL3OvNK+DXk+9bb2l3s3er7iu3OXcUz6Yj79PoU+Pr5rvbN8K33t+Bn4pfg1+4/6O/kv9TwXgA4IDtgRcD9QJ5AfWBY4HOQctD+oMpgVHBVcE3w+xCJGGtIeioUGhW0PvzDKeJZ7VGgZhgWFbw+6Gm4YvDP8+ghARHlEZ8SDSLnJZZFcUI2p+VH3Uy2jv6OLo27PNZstnd8QoxyTG1MW8ivWJLYkdjLOJWx53KV4rXhTflkBMiEnYlzAxx3fO9jkjiY6JBYkDc03nLpp7YZ7WvIx5x+crz+fNP5KET4pNqk96xwvj1fAmFgQuqFowzufyd/AfCzwF2wRjQndhiXA02T25JPlhinvK1pSxVI/U0tQnIq6oQvQsLSCtOu1Velj6/vSPGbEZTZmkzKTMo2I1cbq4M0s3a1FWn8RSUiAZXOi6cPvCcWmwdF82kj03u03GlElk3XIz+Vr5UM7MnMqc17kxuUcWqS4SL+pebLF4w+LRJX5Lvl6KW8pf2rFMf9nqZUPLvZbvWYGsWLCiY6XhyvyVI6v8Vx1YTVmdvvqHPNu8krwXa2LXtOfr5K/KH17rv7ahQKlAWnB9ndu66vW49aL1PRscNpRv+FAoKLxYZFtUWvRuI3/jxa/svir76uOm5E09xU7FuzYTNos3D2zx2HKgRLVkScnw1tCtLdvY2wq3vdg+f/uF0uml1TsoO+Q7BstCytrKjco3l7+rSK3or/SubKrSrtpQ9WqnYOeVXZ67Gqt1qouq3+4W7b6xx39PS41JTelewt6cvQ9qY2q7vuZ8XbdPa1/Rvvf7xfsHD0Qe6Kxzrqur164vbkAb5A1jBxMPXv7G55u2RqvGPU2spqJDcEh+6NG3Sd8OHA4+3HGEc6TxO+PvqpoZzYUtSMvilvHW1NbBtvi2vqNBRzva3dqbv7f+fv8x/WOVx9WPF5+gnMg/8fHkkpMTpySnnpxOOT3cMb/j9pm4M9c6Izp7zgafPX/O79yZLq+uk+fdzx+74Hrh6EXOxdZLTpdauh27m39w/KG5x6mnpde5t+2yy+X2vhl9J654XDl91efquWuB1y71z+rvG5g9cON64vXBG4IbD29m3Hx2K+fW5O1Vd/B3Cu+q3C29p32v5kfzH5sGnQaPD/kMdd+Pun97mD/8+Kfsn96N5D+gPygd1Rute2j/8NiY39jlR3MejTyWPJ58UvCz6s9VT82efveL5y/d43HjI8+kzz7+uvG55vP9L6a/6JgIn7j3MvPl5KvC15qvD7zhvOl6G/t2dDL3HfFd2Xvz9+0fgj/c+Zj58eNv94Tz+8WoiUIAAAAJcEhZcwAACxMAAAsTAQCanBgAAAIYSURBVFiFxVe7isJAFD0uQT9iG4v4AW6jhWDhH4il1rHRbf0DO3tBsEgrkg/QTkhgQV2InWBjJYiFj2KbWW7IZBPNJJv4yIGLzngz50zuGWcG+EMaQBuADuAIgD04jvbYbZvLg3cAiyeQimJhc1pIv5icxxJAhgS0EiDn0YJdl9BkVVWZG/fm2aG/AfhAcshLfo5UVfU2M58PzRkMBlEFZOD3auJCUZSoJWBUgkQh+XU2m81Yg02nU5RKpfsF9Pt9T7vT6aBYLEKWZat9Op0wn8/R6/WwXq9xL5goarUa2+12wpqfz2fW7XYDlyG1eZTLZT8e+JLLsmwRuLHZbJhpmjf9ZD6RAFFeqABN0zwzpbfhFmcYhkdYXAGSqC683oTxeIzRaOS0qe7D4RCFQsFqZ7NZYX3dhiaTXkMSPUhG48jlcje/u0kvl4tQwLWh/y1A0zRnhvRpGIbVdzgcrKVWrVadXF2n7eQJq2AymQjr6a4/eSLmZsQCBVDQMiOSa5AxicxNHkdAiqsIA5myUqlY3/f7vceU15tUvV532qkUUcTwAIeiKJ6/10ajgUdCCksgcveMwgRst1usVqtIItgjTkJx4w0JQ4r6AHkiCoIMyxGpBFFBm1dYCX6QHE5UgjmAoihjNpvdxUCrIgAm7LsaSyja/Gi8TID8mx/LCa++nNKEncspB11QPgF8kTmeQEpj0tjE4VyGfgGiM7tWO2FWdwAAAABJRU5ErkJggg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@100..900&family=Black+Han+Sans&family=Do+Hyeon&family=Jua&family=Gothic+A1:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;700&family=Nanum+Pen+Script&family=Gaegu&family=Nanum+Myeongjo:wght@400;800&family=Song+Myung&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F1F3F8;
+    --panel:#FFFFFF;
+    --ink:#10162B;
+    --muted:#5A6478;
+    --line:#D4D9E4;
+    --cobalt:#2447E0;      /* 쪽빛 — primary accent */
+    --cobalt-soft:#E4E9FC;
+    --persimmon:#E4572E;   /* license warnings only */
+    --persimmon-soft:#FBEAE3;
+    --ok:#1E8A5A;
+    --disp:"Archivo","Pretendard","Noto Sans KR",sans-serif;
+    --body:"Archivo","Pretendard","Noto Sans KR",sans-serif;
+    --mono:"IBM Plex Mono","Noto Sans KR",monospace;
+    --kr:"Noto Sans KR",sans-serif;
+    --radius:10px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--cobalt);text-decoration:none}
+  a:hover{text-decoration:underline}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px;border-radius:4px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* ---------- language toggle ---------- */
+  html:not(.ko) .ko-t{display:none}
+  html.ko .en-t{display:none}
+  html.ko body{line-height:1.75}
+  .lang-toggle{display:flex;border:1.5px solid var(--ink);border-radius:8px;overflow:hidden}
+  .lang-toggle button{appearance:none;border:0;background:transparent;color:var(--ink);font-family:var(--body);font-weight:700;font-size:12.5px;padding:7px 14px;cursor:pointer;letter-spacing:.02em}
+  .lang-toggle button.active{background:var(--ink);color:#fff}
+  .lang-toggle button:not(.active):hover{background:var(--cobalt-soft)}
+
+  /* ---------- nav ---------- */
+  nav{position:sticky;top:0;background:rgba(241,243,248,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-weight:800;font-size:15px;letter-spacing:.02em;color:var(--ink);white-space:nowrap}
+  .logo .block{width:32px;height:32px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--kr);font-weight:900;font-size:17px;border-radius:7px}
+  .nav-right{display:flex;align-items:center;gap:26px}
+  .nav-links{display:flex;gap:26px;font-size:13.5px;font-weight:600}
+  .nav-links a{color:var(--muted)}
+  .nav-links a:hover{color:var(--cobalt);text-decoration:none}
+  @media(max-width:860px){.nav-links{display:none}}
+  @media(max-width:520px){.logo .logo-text{display:none}}
+
+  /* ---------- hero ---------- */
+  header{padding:84px 0 72px;border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--cobalt);margin-bottom:18px}
+  h1{font-family:var(--disp);font-weight:850;font-variation-settings:"wdth" 108;font-size:clamp(34px,4.6vw,54px);line-height:1.06;letter-spacing:-.015em;margin-bottom:22px}
+  html.ko h1{font-variation-settings:normal;font-weight:900;line-height:1.22;letter-spacing:-.02em;font-size:clamp(30px,4vw,46px)}
+  h1 em{font-style:normal;color:var(--cobalt)}
+  .hero-tag{font-family:var(--disp);font-weight:700;font-size:19px;color:var(--cobalt);margin:-6px 0 16px;letter-spacing:-.01em}
+  html.ko .hero-tag{font-weight:800}
+  .lede{font-size:18px;color:var(--muted);max-width:52ch;margin-bottom:32px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:13px 22px;border-radius:8px;font-weight:700;font-size:15px;border:1.5px solid transparent}
+  .btn-primary{background:var(--cobalt);color:#fff}
+  .btn-primary:hover{background:#1c3ac2;text-decoration:none}
+  .btn-ghost{border-color:var(--ink);color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:#fff;text-decoration:none}
+  .hero-note{margin-top:26px;font-size:13px;color:var(--muted);font-family:var(--mono)}
+  .kofi-fixed{position:fixed;right:20px;bottom:20px;z-index:60}
+  .kofi-fixed iframe{display:block}
+
+  /* signature: syllable block */
+  .syllable{position:relative;aspect-ratio:1;max-width:340px;margin:0 auto;width:100%}
+  .syl-frame{position:absolute;inset:0;border:2px dashed var(--line);border-radius:14px}
+  .jamo{position:absolute;font-family:var(--kr);font-weight:900;color:var(--ink);transition:transform .45s cubic-bezier(.2,.8,.2,1),color .3s;cursor:default;line-height:1}
+  .jamo .lbl{position:absolute;white-space:nowrap;font-family:var(--mono);font-weight:500;font-size:11.5px;color:var(--cobalt);opacity:0;transition:opacity .3s;letter-spacing:.03em}
+  .j-h{font-size:120px;top:8%;left:12%}
+  .j-h .lbl{left:110%;top:38%}
+  .j-a{font-size:150px;top:4%;right:10%}
+  .j-a .lbl{left:75%;top:104%}
+  .j-n{font-size:110px;bottom:6%;left:26%}
+  .j-n .lbl{left:105%;top:40%}
+  .syllable:hover .j-h,.syllable:focus-within .j-h,.syllable:focus .j-h{transform:translate(-26px,-26px);color:var(--cobalt)}
+  .syllable:hover .j-a,.syllable:focus-within .j-a,.syllable:focus .j-a{transform:translate(26px,-10px);color:var(--cobalt)}
+  .syllable:hover .j-n,.syllable:focus-within .j-n,.syllable:focus .j-n{transform:translate(-6px,26px);color:var(--cobalt)}
+  .syllable:hover .lbl,.syllable:focus-within .lbl,.syllable:focus .lbl{opacity:1}
+  .syl-caption{text-align:center;font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:18px}
+  @media(hover:none){.jamo .lbl{opacity:1}}
+  @media(prefers-reduced-motion:reduce){.jamo{transition:none}html{scroll-behavior:auto}}
+
+  /* ---------- sections ---------- */
+  section{padding:76px 0;border-bottom:1px solid var(--line)}
+  .sec-head{display:flex;align-items:flex-start;gap:18px;margin-bottom:14px}
+  .sec-index{flex:none;width:44px;height:44px;border:2px solid var(--ink);border-radius:9px;display:grid;place-items:center;font-family:var(--kr);font-weight:900;font-size:20px;background:var(--panel)}
+  h2{font-family:var(--disp);font-weight:800;font-variation-settings:"wdth" 106;font-size:clamp(24px,3vw,32px);letter-spacing:-.01em;line-height:1.15}
+  html.ko h2{font-variation-settings:normal;font-weight:800;line-height:1.3}
+  .sec-sub{color:var(--muted);max-width:64ch;margin:6px 0 40px 62px;font-size:16.5px}
+  @media(max-width:640px){.sec-sub{margin-left:0}}
+  .index-hint{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:4px 0 0 62px}
+  @media(max-width:640px){.index-hint{margin-left:0}}
+
+  /* difference cards */
+  .diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:820px){.diff-grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;min-width:0}
+  .card h3{font-family:var(--disp);font-weight:750;font-size:18.5px;margin-bottom:10px;letter-spacing:-.005em}
+  .card p{font-size:15px;color:var(--muted)}
+  .card .demo{margin-top:18px;padding:16px;background:var(--bg);border-radius:8px;border:1px solid var(--line)}
+  .stat{font-family:var(--disp);font-weight:850;font-size:34px;letter-spacing:-.02em;color:var(--cobalt)}
+  .stat-label{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .stat-row{display:flex;gap:34px;flex-wrap:wrap}
+  .weight-demo{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-family:var(--kr)}
+  .weight-demo b{font-size:34px;line-height:1}
+  .dense-demo{font-family:var(--kr);letter-spacing:.02em}
+  .dense-demo .sz{color:var(--muted);font-family:var(--mono);font-size:11px;margin-right:10px}
+  .baseline-demo{font-size:24px;border-bottom:2px solid var(--persimmon);display:inline-block;line-height:1.1}
+  .baseline-demo .kr{font-family:var(--kr);font-weight:700}
+  .baseline-demo .lat{font-family:Georgia,serif}
+  .demo-note{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:8px}
+  .tax{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:14px}
+  @media(max-width:560px){.tax{grid-template-columns:1fr}}
+  .tax div{padding:8px 12px;background:var(--bg);border-radius:6px;border:1px solid var(--line)}
+  .tax .k{font-family:var(--kr);font-weight:700}
+  .tax .e{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+  /* font category cards */
+  .cat{margin-bottom:52px}
+  .cat:last-child{margin-bottom:0}
+  .cat-title{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+  .cat-title h3{font-family:var(--disp);font-weight:800;font-size:21px}
+  .cat-title .use{font-family:var(--mono);font-size:12px;color:var(--cobalt);letter-spacing:.04em;text-transform:uppercase}
+  .cat-desc{color:var(--muted);font-size:15px;max-width:70ch;margin-bottom:22px}
+  .font-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:900px){.font-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.font-grid{grid-template-columns:1fr}}
+  .font-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,box-shadow .2s;min-width:0}
+  .font-card:hover{border-color:var(--cobalt);box-shadow:0 4px 18px rgba(36,71,224,.08)}
+  .specimen{font-size:26px;line-height:1.35;min-height:76px}
+  .specimen small{display:block;font-size:15px;opacity:.75}
+  .font-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding-top:12px;margin-top:auto}
+  .font-name{font-weight:700;font-size:14.5px}
+  .font-name a{color:var(--ink)}
+  .font-name a:hover{color:var(--cobalt)}
+  .lic{font-family:var(--mono);font-size:10.5px;padding:3px 8px;border-radius:20px;letter-spacing:.04em;white-space:nowrap}
+  .lic-ofl{background:var(--cobalt-soft);color:var(--cobalt)}
+  .font-note{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+  /* specimen font assignments */
+  .f-noto{font-family:"Noto Sans KR"}
+  .f-pretendard{font-family:"Pretendard"}
+  .f-gothica1{font-family:"Gothic A1"}
+  .f-plexkr{font-family:"IBM Plex Sans KR"}
+  .f-blackhan{font-family:"Black Han Sans"}
+  .f-dohyeon{font-family:"Do Hyeon"}
+  .f-jua{font-family:"Jua"}
+  .f-nanumpen{font-family:"Nanum Pen Script";font-size:34px!important}
+  .f-gaegu{font-family:"Gaegu"}
+  .f-galmuri{font-family:"Galmuri11","Galmuri9",monospace}
+  .f-myeongjo{font-family:"Nanum Myeongjo"}
+  .f-song{font-family:"Song Myung"}
+
+  /* license section */
+  .warn{display:flex;gap:14px;background:var(--persimmon-soft);border:1px solid #EFC4B4;border-radius:var(--radius);padding:20px 22px;margin-bottom:32px}
+  .warn .sign{flex:none;font-family:var(--kr);font-weight:900;font-size:22px;color:var(--persimmon)}
+  html:not(.ko) .warn .sign{font-family:var(--disp);font-size:14px;letter-spacing:.08em;padding-top:5px}
+  .warn p{font-size:15px}
+  .warn b{color:var(--persimmon)}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);font-size:14.5px}
+  .table-scroll{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line)}
+  .table-scroll table{border:none}
+  th{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;text-align:left;color:var(--muted);background:var(--bg);padding:12px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td b a{color:var(--ink)}
+  .yes{color:var(--ok);font-weight:700}
+  .cond{color:var(--persimmon);font-weight:700}
+  .checklist{margin-top:36px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .checklist h3{font-family:var(--disp);font-weight:800;font-size:18px;margin-bottom:16px}
+  .checklist ol{padding-left:22px;display:grid;gap:10px;font-size:15px}
+
+  /* tips */
+  .tip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:820px){.tip-grid{grid-template-columns:1fr}}
+  code,pre{font-family:var(--mono);font-size:13px}
+  pre{background:var(--ink);color:#DCE3F5;padding:16px;border-radius:8px;overflow-x:auto;line-height:1.6;margin-top:14px;max-width:100%}
+  code.inline{background:var(--cobalt-soft);color:var(--cobalt);padding:2px 6px;border-radius:4px;font-size:12.5px}
+  .pangram{font-family:var(--kr);font-weight:500;font-size:19px;margin-top:10px;color:var(--ink)!important}
+
+  /* resources */
+  .res-list{display:grid;gap:14px}
+  .res{display:grid;grid-template-columns:210px 1fr;gap:20px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;align-items:start}
+  @media(max-width:640px){.res{grid-template-columns:1fr;gap:6px}}
+  .res b{font-size:15.5px}
+  .res p{font-size:14.5px;color:var(--muted)}
+  .res .tagline{font-family:var(--mono);font-size:11px;color:var(--cobalt);display:block;margin-top:4px}
+
+  /* footer */
+  footer{padding:56px 0 72px;color:var(--muted);font-size:14px}
+  footer .disclaimer{max-width:62ch}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where can I find free Korean (Hangul) fonts for a game?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google Fonts' Korean subset, Noonnu, Pretendard, and the Noto CJK repository all offer free Korean fonts cleared for commercial use. For shipping inside a game build, fonts under the SIL Open Font License (OFL) are the safest choice since embedding and modification are explicitly permitted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I embed a free Korean font inside my shipped game build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the license. Some free Korean fonts allow commercial use in images or video but restrict redistributing the font file itself, which is exactly what embedding it in a game build does. Fonts under the SIL Open Font License (OFL) permit embedding, modification, and subsetting, making them the safest path."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are Korean fonts so much larger than Latin fonts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hangul letters combine into syllable blocks, and modern Korean has up to 11,172 possible syllable combinations, each requiring its own glyph. Most fonts ship the KS X 1001 standard set of 2,350 syllables, which is why Korean fonts are measured in megabytes rather than kilobytes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I reduce the size of a Korean font for Unity, Unreal, or Godot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subset the font to only the characters your localization actually uses with fonttools' pyftsubset, and export as woff2 for web builds. In Unity's TextMeshPro, use dynamic atlas mode instead of baking a full static atlas of 2,350+ syllables."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Hangul for Game Devs — home">
+      <span class="block">한</span> <span class="logo-text">HANGUL FOR GAME DEVS</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#basics"><span class="en-t">How Hangul differs</span><span class="ko-t">한글의 특성</span></a>
+        <a href="#fonts"><span class="en-t">Fonts by job</span><span class="ko-t">용도별 폰트</span></a>
+        <a href="#license"><span class="en-t">Licensing</span><span class="ko-t">라이선스</span></a>
+        <a href="#shipping"><span class="en-t">Shipping tips</span><span class="ko-t">실전 팁</span></a>
+        <a href="#resources"><span class="en-t">Resources</span><span class="ko-t">리소스</span></a>
+      </div>
+      <div class="lang-toggle" role="group" aria-label="Language / 언어">
+        <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+        <button id="btn-ko" onclick="setLang('ko')">한국어</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow"><span class="en-t">Free fonts · Licensing · Shipping tips</span><span class="ko-t">무료 폰트 · 라이선스 · 실전 팁</span></p>
+      <h1>
+        <span class="en-t">The Korean font <em>field guide</em><br>for game developers</span>
+        <span class="ko-t">해외 게임 개발자를 위한<br>한글 폰트 <em>실전 가이드</em></span>
+      </h1>
+      <p class="hero-tag">
+        <span class="en-t">Korean fonts work differently. Here's how to choose one anyway.</span>
+        <span class="ko-t">한글 폰트, 규칙이 다릅니다. 그래도 고르는 법은 있습니다.</span>
+      </p>
+      <p class="lede">
+        <span class="en-t">You don't need to read Hangul to pick a good Korean font — you need to know what to look for. This guide covers how Korean type differs from Latin, which free fonts fit which job, and the license traps that catch shipping games.</span>
+        <span class="ko-t">한글을 몰라도 좋은 한글 폰트는 고를 수 있습니다. 무엇을 봐야 하는지만 알면 되니까요. 한글 타이포그래피가 라틴과 어떻게 다른지, 용도별로 어떤 무료 폰트가 어울리는지, 출시 직전에 발목을 잡는 라이선스 함정은 무엇인지 이 가이드에 담았습니다.</span>
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#basics"><span class="en-t">Start with the basics</span><span class="ko-t">기초부터 보기</span></a>
+        <a class="btn btn-ghost" href="#fonts"><span class="en-t">Skip to the fonts</span><span class="ko-t">폰트 바로 보기</span></a>
+      </div>
+      <p class="hero-note"><span class="en-t">No fonts are hosted here. Every link goes to the original distributor.</span><span class="ko-t">이 사이트는 폰트를 호스팅하지 않습니다. 모든 링크는 원 배포처로 연결됩니다.</span></p>
+    </div>
+    <div>
+      <div class="syllable" tabindex="0" aria-label="The Korean syllable 한, built from three letters. Hover or focus to see them separate. / 한글 음절 '한' — 초성·중성·종성으로 분해됩니다.">
+        <div class="syl-frame"></div>
+        <div class="jamo j-h">ㅎ<span class="lbl"><span class="en-t">initial consonant</span><span class="ko-t">초성</span></span></div>
+        <div class="jamo j-a">ㅏ<span class="lbl"><span class="en-t">vowel</span><span class="ko-t">중성</span></span></div>
+        <div class="jamo j-n">ㄴ<span class="lbl"><span class="en-t">final consonant</span><span class="ko-t">종성</span></span></div>
+      </div>
+      <p class="syl-caption">
+        <span class="en-t">Hover the block — every Korean syllable is letters stacked into one square. This one detail explains most of what follows.</span>
+        <span class="ko-t">블록에 마우스를 올려보세요. 한글의 모든 음절은 자모가 네모 하나 안에 모여 만들어집니다. 이 사실 하나만 기억하면 뒤의 내용 대부분이 저절로 이해됩니다.</span>
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- ─────────────── SECTION 가: HOW HANGUL DIFFERS ─────────────── -->
+<section id="basics">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-index" title="Korean lists count 가·나·다 the way English lists count A·B·C.">가</div>
+      <div>
+        <h2><span class="en-t">Five ways Korean type differs from Latin</span><span class="ko-t">한글 타이포그래피가 라틴과 다른 5가지</span></h2>
+        <p class="index-hint"><span class="en-t">Sections are numbered 가·나·다 — Korean's A·B·C.</span><span class="ko-t">섹션 번호는 가·나·다. 한국식 A·B·C입니다.</span></p>
+      </div>
+    </div>
+    <p class="sec-sub"><span class="en-t">Skim these five points and every font decision downstream gets easier. Each one changes something practical: your file size, your UI layout, or your QA checklist.</span><span class="ko-t">이 다섯 가지만 알아두면 폰트 고르기가 한결 쉬워집니다. 하나하나가 파일 용량, UI 레이아웃, QA 체크리스트에 곧바로 영향을 주는 항목들입니다.</span></p>
+
+    <div class="diff-grid">
+      <div class="card">
+        <h3><span class="en-t">1 · One font file can hold 11,172 syllables</span><span class="ko-t">1 · 폰트 파일 하나에 최대 11,172자</span></h3>
+        <p><span class="en-t">Latin fonts cover ~230 glyphs. Korean letters combine into square syllable blocks, and every combination is a separate glyph. Most fonts ship the KS X 1001 standard set of 2,350 syllables; full coverage is 11,172. That's why a Korean font is measured in megabytes, not kilobytes — and why it lands directly on your build size and load time.</span><span class="ko-t">라틴 폰트는 글리프 230개 정도면 충분합니다. 한글은 자모가 조합되어 네모난 음절 블록이 되고, 그 조합 하나하나가 전부 별개의 글리프입니다. 대부분의 폰트는 KS X 1001 표준인 2,350자를 담고 있고, 조합 가능한 전체 글자 수는 11,172자에 이릅니다. 한글 폰트 용량이 KB가 아니라 MB 단위인 이유이자, 빌드 용량과 로딩 시간에 직접 영향을 주는 이유입니다.</span></p>
+        <div class="demo stat-row">
+          <div><div class="stat">~230</div><div class="stat-label"><span class="en-t">glyphs · typical Latin font</span><span class="ko-t">글리프 · 일반 라틴 폰트</span></div></div>
+          <div><div class="stat">2,350</div><div class="stat-label"><span class="en-t">syllables · KS X 1001 standard</span><span class="ko-t">음절 · KS X 1001 표준</span></div></div>
+          <div><div class="stat">11,172</div><div class="stat-label"><span class="en-t">syllables · full modern Hangul</span><span class="ko-t">음절 · 현대 한글 전체</span></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="en-t">2 · Blocks on a grid, not letters on a line</span><span class="ko-t">2 · 선 위의 글자가 아니라, 격자 위의 블록</span></h3>
+        <p><span class="en-t">Latin letters flow side by side along a baseline. Hangul syllables are designed inside an invisible square, like CJK characters. Kerning between pairs matters far less than in Latin — what matters instead is how a face handles <b>stroke density</b>, because some syllables pack far more strokes into the same square than others.</span><span class="ko-t">라틴 문자는 베이스라인을 따라 옆으로 흐르지만, 한글 음절은 한자나 가나처럼 보이지 않는 정사각형 틀 안에 그려집니다. 그래서 글자 사이 커닝은 라틴만큼 중요하지 않습니다. 대신 <b>획 밀도</b>가 관건입니다. 같은 네모 안에 획이 훨씬 많이 들어가는 글자들이 있기 때문입니다.</span></p>
+        <div class="demo dense-demo">
+          <div><span class="sz">24px</span><span style="font-size:24px;font-weight:500">가 나 무 · 뷁 밝 흙 값</span></div>
+          <div style="margin-top:8px"><span class="sz">12px</span><span style="font-size:12px;font-weight:500">가 나 무 · 뷁 밝 흙 값 <span class="en-t">← complex blocks blur first</span><span class="ko-t">← 복잡한 블록부터 뭉개집니다</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="en-t">3 · Bold gets dense, fast</span><span class="ko-t">3 · 볼드는 순식간에 빽빽해집니다</span></h3>
+        <p><span class="en-t">Because strokes multiply inside a fixed square, heavy weights fill in much faster than Latin bolds. A weight that looks punchy in English can look clogged in Korean at the same size. Rule of thumb: pick your Korean weight one step lighter than your Latin instinct, then compare on screen.</span><span class="ko-t">정해진 네모 안에서 획만 늘어나다 보니, 한글의 굵은 웨이트는 라틴 볼드보다 훨씬 빨리 빽빽해집니다. 영문에서는 시원하던 굵기가 같은 크기의 한글에서는 답답해 보일 수 있습니다. 요령은 하나입니다. 영문 기준보다 한 단계 가는 웨이트를 고른 뒤, 화면에서 직접 비교하세요.</span></p>
+        <div class="demo weight-demo" aria-label="빛 · thin to black weight">
+          <b style="font-weight:100">빛</b><b style="font-weight:300">빛</b><b style="font-weight:500">빛</b><b style="font-weight:700">빛</b><b style="font-weight:900">빛</b>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:8px"><span class="en-t">100 → 900, same glyph</span><span class="ko-t">100 → 900, 같은 글자</span></span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><span class="en-t">4 · Baselines don't agree</span><span class="ko-t">4 · 베이스라인이 서로 맞지 않습니다</span></h3>
+        <p><span class="en-t">Hangul is drawn to its square grid; Latin hangs from a baseline with ascenders and descenders. Mix a Korean face with a Latin face and the Latin usually looks small, high, or loose next to it. Fix it per pair: nudge the Latin size up ~5–10% or adjust line-height and vertical offset until mixed strings sit evenly.</span><span class="ko-t">한글은 정사각 격자를 기준으로, 라틴은 어센더·디센더가 있는 베이스라인을 기준으로 그려집니다. 그래서 둘을 섞으면 라틴 쪽이 작아 보이거나 떠 보이기 쉽습니다. 해결은 조합마다 따로 해야 합니다. 라틴 크기를 5–10% 키우거나, 섞인 문장이 고르게 앉을 때까지 행간과 수직 위치를 조정하세요.</span></p>
+        <div class="demo">
+          <span class="baseline-demo"><span class="kr">레벨</span> <span class="lat">Lv.99</span> <span class="kr">달성!</span></span>
+          <div class="demo-note"><span class="en-t">Mixed Hangul + Latin on one line — the seam every Korean UI has to solve.</span><span class="ko-t">한 줄에 한글과 라틴이 섞인 모습. 모든 한국어 UI가 풀어야 하는 숙제입니다.</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column:1/-1">
+        <h3><span class="en-t">5 · The style names map differently</span><span class="ko-t">5 · 스타일 분류 체계가 다릅니다</span></h3>
+        <p><span class="en-t">Korean type has its own taxonomy. Learn four words and every Korean font site becomes navigable — including the ones with no English UI.</span><span class="ko-t">한글 타이포그래피에는 고유한 분류 체계가 있습니다. 네 단어만 익히면 영문 UI가 없는 한국 폰트 사이트도 자유롭게 탐색할 수 있습니다.</span></p>
+        <div class="demo tax">
+          <div><span class="k">고딕</span> Gothic <span class="e"><span class="en-t">≈ sans-serif · UI, body text</span><span class="ko-t">≈ 산세리프 · UI, 본문</span></span></div>
+          <div><span class="k">명조</span> Myeongjo <span class="e"><span class="en-t">≈ serif · narrative, dialogue</span><span class="ko-t">≈ 세리프 · 내러티브, 대사</span></span></div>
+          <div><span class="k">둥근고딕</span> Rounded Gothic <span class="e"><span class="en-t">soft sans · casual, cozy games</span><span class="ko-t">부드러운 산스 · 캐주얼, 아늑한 게임</span></span></div>
+          <div><span class="k">손글씨</span> Handwriting <span class="e"><span class="en-t">script · titles, flavor text</span><span class="ko-t">스크립트 · 타이틀, 감성 텍스트</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── SECTION 나: FONTS BY JOB ─────────────── -->
+<section id="fonts">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-index">나</div>
+      <div><h2><span class="en-t">Free Korean fonts, sorted by the job they do</span><span class="ko-t">용도별로 정리한 무료 한글 폰트</span></h2></div>
+    </div>
+    <p class="sec-sub"><span class="en-t">Every specimen below renders in the actual font, live. The Korean line reads "A new adventure begins." All links go to the original distributor — check the license there before you ship (they do change).</span><span class="ko-t">아래 견본은 모두 실제 폰트로 렌더링된 것입니다. 링크는 전부 원 배포처로 연결되니, 출시 전에 해당 페이지에서 라이선스를 꼭 확인하세요. 조건은 종종 바뀝니다.</span></p>
+
+    <div class="checklist" style="margin-bottom:44px">
+      <h3><span class="en-t">In a hurry? The one-font-per-job shortlist</span><span class="ko-t">시간이 없다면 — 용도별 원픽</span></h3>
+      <div class="tax">
+        <div><span class="k">UI · 본문</span><span class="e">Pretendard <span class="en-t">or</span><span class="ko-t">또는</span> Noto Sans KR</span></div>
+        <div><span class="k">타이틀 · HUD</span><span class="e">Black Han Sans</span></div>
+        <div><span class="k">손글씨 · 감성</span><span class="e">Nanum Pen Script</span></div>
+        <div><span class="k">픽셀 · 레트로</span><span class="e">Galmuri</span></div>
+      </div>
+    </div>
+
+    <!-- UI & BODY -->
+    <div class="cat">
+      <div class="cat-title"><h3><span class="en-t">UI &amp; body text</span><span class="ko-t">UI &amp; 본문</span></h3><span class="use">고딕 · SANS</span></div>
+      <p class="cat-desc"><span class="en-t">Your default pick. These stay readable at small sizes, ship multiple weights, and won't fight your interface. If you only license one Korean font for your whole game, take it from this row.</span><span class="ko-t">기본 선택지입니다. 작은 크기에서도 잘 읽히고, 웨이트가 다양하며, 어떤 UI에도 무난하게 어울립니다. 게임 전체에 한글 폰트를 딱 하나만 쓴다면 여기서 고르세요.</span></p>
+      <div class="font-grid">
+        <div class="font-card">
+          <div class="specimen f-noto">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/noto/specimen/Noto+Sans+KR" target="_blank" rel="noopener">Noto Sans KR ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">9 weights · the safe default · Google Fonts</span><span class="ko-t">9웨이트 · 가장 무난한 기본값 · Google Fonts</span></p>
+        </div>
+        <div class="font-card">
+          <div class="specimen f-pretendard">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://github.com/orioncactus/pretendard" target="_blank" rel="noopener">Pretendard ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">9 weights + variable · Korea's favorite modern UI face</span><span class="ko-t">9웨이트 + 가변 · 한국에서 가장 사랑받는 모던 UI 서체</span></p>
+        </div>
+        <div class="font-card">
+          <div class="specimen f-gothica1">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/specimen/Gothic+A1" target="_blank" rel="noopener">Gothic A1 ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">9 weights · slightly warmer than Noto · Google Fonts</span><span class="ko-t">9웨이트 · Noto보다 살짝 따뜻한 인상 · Google Fonts</span></p>
+        </div>
+        <div class="font-card">
+          <div class="specimen f-plexkr">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/specimen/IBM+Plex+Sans+KR" target="_blank" rel="noopener">IBM Plex Sans KR ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">Pairs cleanly with the Latin Plex family</span><span class="ko-t">라틴 Plex 패밀리와 깔끔하게 어울림</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TITLES -->
+    <div class="cat">
+      <div class="cat-title"><h3><span class="en-t">Titles, logos &amp; HUD impact</span><span class="ko-t">타이틀, 로고 &amp; HUD 임팩트</span></h3><span class="use">제목용 · DISPLAY</span></div>
+      <p class="cat-desc"><span class="en-t">Loud, chunky faces for title screens, level-up banners and damage numbers. Usually one weight only — use them for moments, not paragraphs.</span><span class="ko-t">타이틀 화면, 레벨업 배너, 데미지 숫자에 어울리는 크고 두꺼운 서체들입니다. 대부분 웨이트가 하나뿐이니, 긴 글이 아니라 결정적인 '순간'에 쓰세요.</span></p>
+      <div class="font-grid">
+        <div class="font-card">
+          <div class="specimen f-blackhan">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/specimen/Black+Han+Sans" target="_blank" rel="noopener">Black Han Sans ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">Maximum impact · the "boss intro" font</span><span class="ko-t">최대 임팩트 · '보스 등장' 폰트</span></p>
+        </div>
+        <div class="font-card">
+          <div class="specimen f-dohyeon">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/specimen/Do+Hyeon" target="_blank" rel="noopener">Do Hyeon ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">Sporty, condensed · scoreboards and menus</span><span class="ko-t">스포티한 장체 · 스코어보드와 메뉴</span></p>
+        </div>
+        <div class="font-card">
+          <div class="specimen f-jua">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/specimen/Jua" target="_blank" rel="noopener">Jua ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">Rounded and friendly · cozy / casual games</span><span class="ko-t">둥글고 친근함 · 아늑한/캐주얼 게임</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- HANDWRITING -->
+    <div class="cat">
+      <div class="cat-title"><h3><span class="en-t">Handwriting &amp; flavor text</span><span class="ko-t">손글씨 &amp; 감성 텍스트</span></h3><span class="use">손글씨 · SCRIPT</span></div>
+      <p class="cat-desc"><span class="en-t">For journals, letters from NPCs, sticky notes and lo-fi charm. Test at your real in-game size — handwriting faces lose legibility faster than any other category.</span><span class="ko-t">일기장, NPC가 보낸 편지, 포스트잇 같은 감성 연출용입니다. 실제 인게임 크기로 꼭 테스트하세요. 손글씨 서체는 어느 카테고리보다 가독성이 빨리 무너집니다.</span></p>
+      <div class="font-grid">
+        <div class="font-card">
+          <div class="specimen f-nanumpen">새로운 모험이 시작된다<small style="font-family:var(--body)">A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/specimen/Nanum+Pen+Script" target="_blank" rel="noopener">Nanum Pen Script ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">Quick ballpoint-pen energy · quest journals</span><span class="ko-t">볼펜으로 슥 쓴 느낌 · 퀘스트 일지</span></p>
+        </div>
+        <div class="font-card">
+          <div class="specimen f-gaegu">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/specimen/Gaegu" target="_blank" rel="noopener">Gaegu ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">Doodle-like, 3 weights · dialogue with personality</span><span class="ko-t">낙서 같은 매력, 3웨이트 · 개성 있는 대사</span></p>
+        </div>
+        <div class="font-card">
+          <div class="specimen f-myeongjo">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/specimen/Nanum+Myeongjo" target="_blank" rel="noopener">Nanum Myeongjo ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">명조 serif · story-heavy and historical games</span><span class="ko-t">명조 세리프 · 스토리 중심·사극풍 게임</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PIXEL -->
+    <div class="cat">
+      <div class="cat-title"><h3><span class="en-t">Pixel &amp; retro</span><span class="ko-t">픽셀 &amp; 레트로</span></h3><span class="use">도트 · BITMAP</span></div>
+      <p class="cat-desc"><span class="en-t">Drawing 2,350+ syllables in pixels is heroic work, so good free options are rare — but they exist. Render at exact integer multiples of the design size (9px, 11px, 18px, 22px…) or the grid smears.</span><span class="ko-t">2,350자가 넘는 글자를 픽셀로 일일이 그리는 건 보통 일이 아니라서, 쓸 만한 무료 폰트가 드뭅니다. 그래도 있긴 있습니다. 렌더링은 설계 크기의 정수 배수(9px, 11px, 18px, 22px…)로 하세요. 어기면 격자가 뭉개집니다.</span></p>
+      <div class="font-grid">
+        <div class="font-card">
+          <div class="specimen f-galmuri" style="font-size:22px">새로운 모험이 시작된다<small style="font-family:var(--body)">A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://galmuri.quiple.dev" target="_blank" rel="noopener">Galmuri ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">7·9·11px families · covers Korean + Japanese + Latin</span><span class="ko-t">7·9·11px 패밀리 · 한글 + 일본어 + 라틴 지원</span></p>
+        </div>
+        <div class="font-card">
+          <div class="specimen" style="font-family:var(--kr);font-weight:700;color:var(--muted)">네오둥근모<small><span class="en-t">Preview on the project page</span><span class="ko-t">프로젝트 페이지에서 미리보기</span></small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://neodgm.dalgona.dev" target="_blank" rel="noopener">Neo둥근모 ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">Revival of the beloved 90s Korean PC bitmap font</span><span class="ko-t">90년대 한국 PC 비트맵 폰트의 부활</span></p>
+        </div>
+        <div class="font-card">
+          <div class="specimen f-song">새로운 모험이 시작된다<small>A new adventure begins</small></div>
+          <div class="font-meta"><span class="font-name"><a href="https://fonts.google.com/specimen/Song+Myung" target="_blank" rel="noopener">Song Myung ↗</a></span><span class="lic lic-ofl">OFL</span></div>
+          <p class="font-note"><span class="en-t">Not pixel — a vintage 명조 for retro-Korea settings</span><span class="ko-t">픽셀은 아님 — 레트로 한국 배경에 어울리는 빈티지 명조</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── SECTION 다: LICENSING ─────────────── -->
+<section id="license">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-index">다</div>
+      <div><h2><span class="en-t">"Free" is not the same as "free to ship"</span><span class="ko-t">'무료'와 '출시 가능'은 다릅니다</span></h2></div>
+    </div>
+    <p class="sec-sub"><span class="en-t">Korea has an unusually rich free-font culture — companies release fonts as brand marketing. Most allow commercial use, but the terms differ on the one thing games need most: <b>embedding the font file inside your build.</b></span><span class="ko-t">한국은 무료 폰트 문화가 유난히 풍성합니다. 기업들이 브랜드 마케팅 삼아 폰트를 배포하기 때문이죠. 대부분 상업적 이용은 허용하지만, 게임에 가장 중요한 조건 하나에서 갈립니다. 바로 <b>폰트 파일을 빌드에 임베딩할 수 있는가</b>입니다.</span></p>
+
+    <div class="warn">
+      <div class="sign"><span class="en-t">CAUTION</span><span class="ko-t">주의</span></div>
+      <p><span class="en-t"><b>The game-dev trap:</b> some Korean free-font licenses allow commercial use in images and video but restrict redistributing the font file itself — which is exactly what shipping it inside a game build does. Fonts under the <b>SIL Open Font License (OFL)</b> are the safe path: embedding, modification, and subsetting are all permitted. For anything else, read the distributor's page — some "free" fonts also prohibit reselling the font, using it in trademarks/logos without notice, or bundling it in font menus of paid software.</span><span class="ko-t"><b>게임 개발자가 빠지기 쉬운 함정:</b> 일부 한국 무료 폰트는 이미지·영상에서의 상업적 이용은 허용하면서, 폰트 파일 자체의 재배포는 제한합니다. 그런데 게임 빌드에 폰트를 담아 배포하는 것이 바로 그 재배포에 해당합니다. <b>SIL Open Font License(OFL)</b> 폰트를 고르는 것이 가장 안전합니다. 임베딩, 수정, 서브셋팅이 모두 허용되니까요. 그 밖의 폰트는 배포처 페이지를 꼭 읽어보세요. 일부 '무료' 폰트는 폰트 재판매, 무단 로고 사용, 유료 소프트웨어의 폰트 메뉴 포함을 금지하기도 합니다.</span></p>
+    </div>
+
+    <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col"><span class="en-t">Where to download</span><span class="ko-t">다운로드 위치</span></th>
+          <th scope="col"><span class="en-t">What it is</span><span class="ko-t">설명</span></th>
+          <th scope="col"><span class="en-t">Commercial use</span><span class="ko-t">상업적 이용</span></th>
+          <th scope="col"><span class="en-t">Embed in game build</span><span class="ko-t">게임 빌드 임베딩</span></th>
+          <th scope="col"><span class="en-t">English UI</span><span class="ko-t">영문 UI</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b><a href="https://fonts.google.com/?subset=korean" target="_blank" rel="noopener">Google Fonts ↗</a></b></td>
+          <td><span class="en-t">Filter by Korean subset. Everything is OFL. The lowest-risk source, full stop.</span><span class="ko-t">Korean 서브셋으로 필터링하면 됩니다. 전부 OFL이라 가장 안전한 출처입니다. 더 설명이 필요 없습니다.</span></td>
+          <td class="yes"><span class="en-t">Yes</span><span class="ko-t">가능</span></td><td class="yes"><span class="en-t">Yes (OFL)</span><span class="ko-t">가능 (OFL)</span></td><td><span class="en-t">Yes</span><span class="ko-t">지원</span></td>
+        </tr>
+        <tr>
+          <td><b><a href="https://noonnu.cc" target="_blank" rel="noopener">Noonnu (눈누) ↗</a></b></td>
+          <td><span class="en-t">Korea's free-font hub — hundreds of fonts with a per-font license grid (look for the <b>"BI/CI · 임베딩"</b> rows, meaning branding &amp; embedding).</span><span class="ko-t">한국 무료 폰트의 허브입니다. 수백 개 폰트를 폰트별 라이선스 표와 함께 보여줍니다. <b>임베딩</b> 항목을 꼭 확인하세요.</span></td>
+          <td class="yes"><span class="en-t">Mostly</span><span class="ko-t">대부분</span></td><td class="cond"><span class="en-t">Per font — check the grid</span><span class="ko-t">폰트별 상이 — 표 확인</span></td><td><span class="en-t">Korean only</span><span class="ko-t">한국어만</span></td>
+        </tr>
+        <tr>
+          <td><b><a href="https://github.com/orioncactus/pretendard" target="_blank" rel="noopener">Pretendard ↗</a></b></td>
+          <td><span class="en-t">The modern Korean UI standard, on GitHub with full English docs. Variable font included.</span><span class="ko-t">요즘 한국어 UI의 표준입니다. GitHub에서 영문 문서와 함께 배포되고, 가변 폰트도 포함합니다.</span></td>
+          <td class="yes"><span class="en-t">Yes</span><span class="ko-t">가능</span></td><td class="yes"><span class="en-t">Yes (OFL)</span><span class="ko-t">가능 (OFL)</span></td><td><span class="en-t">Yes</span><span class="ko-t">지원</span></td>
+        </tr>
+        <tr>
+          <td><b><a href="https://spoqa.github.io/spoqa-han-sans/" target="_blank" rel="noopener">Spoqa Han Sans Neo ↗</a></b></td>
+          <td><span class="en-t">Clean corporate sans covering KR + JP + Latin, popular in Korean apps.</span><span class="ko-t">한국어 + 일본어 + 라틴을 커버하는 깔끔한 기업용 산스. 한국 앱에서 널리 쓰입니다.</span></td>
+          <td class="yes"><span class="en-t">Yes</span><span class="ko-t">가능</span></td><td class="yes"><span class="en-t">Yes (OFL)</span><span class="ko-t">가능 (OFL)</span></td><td><span class="en-t">Partial</span><span class="ko-t">일부</span></td>
+        </tr>
+        <tr>
+          <td><b><a href="https://www.woowahan.com/fonts" target="_blank" rel="noopener">Woowahan (배달의민족) ↗</a></b></td>
+          <td><span class="en-t">Iconic personality fonts (Jua and Do Hyeon above are from this family) under custom free licenses.</span><span class="ko-t">개성 넘치는 대표 폰트들입니다(위의 주아·도현이 여기 출신). 자체 무료 라이선스로 배포됩니다.</span></td>
+          <td class="yes"><span class="en-t">Yes</span><span class="ko-t">가능</span></td><td class="cond"><span class="en-t">Read the terms per font</span><span class="ko-t">폰트별 약관 확인</span></td><td><span class="en-t">Korean only</span><span class="ko-t">한국어만</span></td>
+        </tr>
+        <tr>
+          <td><b><a href="https://github.com/notofonts/noto-cjk" target="_blank" rel="noopener">Noto CJK (GitHub) ↗</a></b></td>
+          <td><span class="en-t">Source of Noto Sans/Serif KR — grab region-specific OTFs and full weight sets here.</span><span class="ko-t">Noto Sans/Serif KR의 원 출처입니다. 지역별 OTF와 전체 웨이트 세트를 받을 수 있습니다.</span></td>
+          <td class="yes"><span class="en-t">Yes</span><span class="ko-t">가능</span></td><td class="yes"><span class="en-t">Yes (OFL)</span><span class="ko-t">가능 (OFL)</span></td><td><span class="en-t">Yes</span><span class="ko-t">지원</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="checklist">
+      <h3><span class="en-t">Before you ship — the 4-line license check</span><span class="ko-t">출시 전 — 4줄 라이선스 체크</span></h3>
+      <ol>
+        <li><span class="en-t"><b>Commercial use</b> allowed? (Nearly always yes for these sources.)</span><span class="ko-t"><b>상업적 이용</b>이 허용되나요? (위 출처들은 거의 다 허용합니다.)</span></li>
+        <li><span class="en-t"><b>Embedding / redistribution</b> allowed? Your build contains the font file — this is the line that matters.</span><span class="ko-t"><b>임베딩/재배포</b>가 허용되나요? 빌드에 폰트 파일이 담깁니다 — 가장 중요한 조항입니다.</span></li>
+        <li><span class="en-t"><b>Modification</b> allowed? Subsetting a font to shrink it counts as modification under most licenses.</span><span class="ko-t"><b>수정</b>이 허용되나요? 용량을 줄이는 서브셋팅도 대부분의 라이선스에서 수정에 해당합니다.</span></li>
+        <li><span class="en-t"><b>Attribution</b> required? OFL doesn't require credits, but listing fonts in your credits screen is good practice — and Korean players notice.</span><span class="ko-t"><b>출처 표기</b>가 필요한가요? OFL은 크레딧을 요구하지 않지만, 크레딧 화면에 폰트를 적어두면 좋습니다. 한국 플레이어들은 그런 걸 알아봅니다.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── SECTION 라: SHIPPING TIPS ─────────────── -->
+<section id="shipping">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-index">라</div>
+      <div><h2><span class="en-t">Shipping Korean text without pain</span><span class="ko-t">게임에 한글을 넣을 때 꼭 알아야 할 4가지</span></h2></div>
+    </div>
+    <p class="sec-sub"><span class="en-t">Four things that save builds: subsetting, engine setup, the line-height fix, and a proper QA string.</span><span class="ko-t">빌드를 지켜주는 네 가지를 정리했습니다. 서브셋팅, 엔진 설정, 행간 조정, 그리고 제대로 된 QA 문자열입니다.</span></p>
+
+    <div class="tip-grid">
+      <div class="card">
+        <h3><span class="en-t">Subset the font — it's the biggest win</span><span class="ko-t">서브셋팅 — 가장 확실한 용량 절감</span></h3>
+        <p><span class="en-t">You almost never need all 11,172 syllables. Subsetting to the KS X 1001 set of 2,350 (or just the glyphs your localization actually uses) can cut a multi-megabyte font dramatically. With <code class="inline">fonttools</code> installed:</span><span class="ko-t">11,172자가 전부 필요한 경우는 거의 없습니다. KS X 1001의 2,350자(또는 로컬라이제이션에 실제로 쓰이는 글자만)로 서브셋팅하면 수 MB짜리 폰트를 극적으로 줄일 수 있습니다. <code class="inline">fonttools</code> 설치 후:</span></p>
+        <pre>pyftsubset NotoSansKR-Regular.ttf \
+  --unicodes="U+AC00-D7A3,U+1100-11FF,U+3130-318F,U+0020-007E" \
+  --flavor=woff2 \
+  --output-file=NotoSansKR-subset.woff2</pre>
+        <p style="margin-top:12px"><span class="en-t">Tighter still: extract the unique characters from your Korean localization file and pass them with <code class="inline">--text-file=</code>. Confirm the license permits modification first (OFL does).</span><span class="ko-t">더 줄이고 싶다면 한국어 로컬라이제이션 파일에서 실제로 쓰인 문자만 추출해 <code class="inline">--text-file=</code>로 넘기세요. 단, 라이선스가 수정을 허용하는지 먼저 확인해야 합니다(OFL은 허용합니다).</span></p>
+      </div>
+
+      <div class="card">
+        <h3><span class="en-t">Engine notes: atlases will bite</span><span class="ko-t">엔진 노트: 아틀라스를 조심하세요</span></h3>
+        <p><span class="en-t"><b>Unity (TextMeshPro):</b> a static atlas holding 2,350 syllables is huge — use <b>dynamic</b> atlas mode, or bake a static atlas from your localization's actual character set.<br><br><b>Unreal:</b> the same logic applies to font caching; prefer runtime-cached faces over pre-baked textures for CJK.<br><br><b>Godot 4:</b> dynamic fonts handle Hangul well by default; just watch the fallback chain so mixed KR/EN strings don't switch faces mid-line.<br><br><b>Web builds (WebGL/itch.io):</b> load the subset <code class="inline">.woff2</code> yourself and wait on <code class="inline">document.fonts.ready</code> before drawing UI — canvas-based renderers grab whatever font is loaded first and won't re-flow. <b>iOS Safari</b> in particular is quick to fall back to a system CJK font if your custom face hasn't finished loading in time.</span><span class="ko-t"><b>Unity (TextMeshPro):</b> 2,350자를 담은 스태틱 아틀라스는 어마어마하게 큽니다. <b>다이내믹</b> 아틀라스 모드를 쓰거나, 로컬라이제이션에 실제로 쓰인 문자만으로 스태틱 아틀라스를 구우세요.<br><br><b>Unreal:</b> 폰트 캐싱도 같은 논리입니다. CJK는 미리 구운 텍스처보다 런타임 캐싱을 권장합니다.<br><br><b>Godot 4:</b> 다이내믹 폰트가 기본적으로 한글을 잘 처리합니다. 다만 한·영 혼용 문장에서 줄 중간에 서체가 바뀌지 않도록 폴백 체인만 확인하세요.<br><br><b>웹 빌드(WebGL/itch.io):</b> 서브셋한 <code class="inline">.woff2</code>를 직접 로드하고, UI를 그리기 전에 <code class="inline">document.fonts.ready</code>를 기다리세요. 캔버스 기반 렌더러는 먼저 로드된 폰트를 그대로 써버리고 다시 그리지 않습니다. 특히 <b>iOS Safari</b>는 커스텀 폰트 로딩이 늦으면 금방 시스템 CJK 폰트로 대체해버립니다.</span></p>
+      </div>
+
+      <div class="card">
+        <h3><span class="en-t">The mixed-line fix</span><span class="ko-t">한·영 혼용 줄 해결법</span></h3>
+        <p><span class="en-t">When Korean UI text contains Latin (item names, numbers, "HP"), set line-height on the container, not the font default — Korean squares make lines taller than Latin-only text expects. Start around <code class="inline">line-height: 1.6</code> for body text and re-tune per face. If the Latin looks undersized next to Hangul, scale it up 5–10% rather than swapping fonts.</span><span class="ko-t">한국어 UI에 영문(아이템 이름, 숫자, "HP")이 섞일 때는 폰트 기본값 대신 컨테이너에 행간을 직접 지정하세요. 한글은 네모꼴이라 영문만 있을 때보다 줄이 높아지기 때문입니다. 본문은 <code class="inline">line-height: 1.6</code> 근처에서 시작해 서체마다 다시 맞추면 됩니다. 한글 옆에서 영문이 작아 보인다면 폰트를 바꾸기보다 5–10% 키우는 편이 낫습니다.</span></p>
+        <p style="margin-top:12px"><span class="en-t">One more line-wrapping gotcha for HTML/WebView UI: Korean breaks at spaces between words, but the default CSS line-breaking rules treat it like Chinese/Japanese and can split mid-word inside narrow boxes. Add <code class="inline">word-break: keep-all;</code> to Korean text containers so it wraps at word boundaries the way it actually reads.</span><span class="ko-t">HTML/WebView UI라면 줄바꿈에서 하나 더 조심할 게 있습니다. 한글은 어절(단어) 단위로 띄어 쓰지만, 기본 CSS 줄바꿈 규칙은 중국어·일본어처럼 취급해서 좁은 박스 안에서 어절 중간이 잘릴 수 있습니다. 한글 텍스트 컨테이너에 <code class="inline">word-break: keep-all;</code>을 지정해 실제로 읽히는 단위로 줄이 바뀌게 하세요.</span></p>
+      </div>
+
+      <div class="card">
+        <h3><span class="en-t">Latin fallback chain</span><span class="ko-t">라틴 폰트 폴백 체인</span></h3>
+        <p><span class="en-t">Most free Korean fonts ship thin or no Latin glyph coverage, so pair each Korean face with a Latin font you actually like and let the browser/engine pick per character. In CSS, list the Latin face first so ASCII renders in it, then the Korean face for everything else:</span><span class="ko-t">무료 한글 폰트는 라틴 글리프가 부실하거나 아예 없는 경우가 많습니다. 그러니 한글 서체마다 마음에 드는 라틴 폰트를 짝지어주고, 문자 단위로 알아서 골라 쓰게 하세요. CSS에서는 라틴 폰트를 먼저 적어 ASCII는 그 폰트로 렌더링되게 하고, 그 뒤에 한글 폰트를 이어줍니다:</span></p>
+        <pre>font-family: "Archivo", "Pretendard",
+  "Noto Sans KR", sans-serif;</pre>
+        <p style="margin-top:12px"><span class="en-t">Same idea in Unity/Unreal/Godot: set the Latin font as primary and the Korean font as its fallback asset, rather than trying to find one font that does both well.</span><span class="ko-t">Unity/Unreal/Godot도 원리는 같습니다. 하나의 폰트로 둘 다 해결하려 하지 말고, 라틴 폰트를 기본으로 두고 한글 폰트를 폴백 에셋으로 연결하세요.</span></p>
+      </div>
+
+      <div class="card">
+        <h3><span class="en-t">QA with the right strings</span><span class="ko-t">제대로 된 QA 문자열</span></h3>
+        <p><span class="en-t">Test legibility with a pangram and stress-test with dense syllables at your smallest UI size:</span><span class="ko-t">팬그램으로 가독성을 확인하고, 획이 빽빽한 글자로 최소 UI 크기의 한계를 시험해 보세요.</span></p>
+        <p class="pangram">다람쥐 헌 쳇바퀴에 타고파</p>
+        <p class="demo-note"><span class="en-t">Korea's classic pangram — "I want to ride a squirrel's old treadmill."</span><span class="ko-t">한국의 대표 팬그램입니다.</span></p>
+        <p class="pangram" style="margin-top:14px">뷁 밝 흙 값 짧 넓 삶</p>
+        <p class="demo-note"><span class="en-t">Maximum-density blocks — if these hold up at your smallest font size, everything will.</span><span class="ko-t">획 밀도가 가장 높은 글자들입니다. 최소 폰트 크기에서 이 글자들이 버티면 나머지는 전부 괜찮습니다.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── SECTION 마: RESOURCES ─────────────── -->
+<section id="resources">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-index">마</div>
+      <div><h2><span class="en-t">Bookmarks</span><span class="ko-t">북마크</span></h2></div>
+    </div>
+    <p class="sec-sub"><span class="en-t">Everything linked above, in one place — plus a couple of extras worth knowing.</span><span class="ko-t">위에서 링크한 곳들을 한자리에 모으고, 알아두면 좋은 곳 몇 군데를 더했습니다.</span></p>
+
+    <div class="res-list">
+      <div class="res"><div><b><a href="https://fonts.google.com/?subset=korean" target="_blank" rel="noopener">Google Fonts — Korean ↗</a></b><span class="tagline"><span class="en-t">DOWNLOAD · OFL ONLY</span><span class="ko-t">다운로드 · 전부 OFL</span></span></div><p><span class="en-t">Filter the whole library by Korean subset. If you want zero license anxiety, never leave this page.</span><span class="ko-t">전체 라이브러리를 Korean 서브셋으로 필터링할 수 있습니다. 라이선스 걱정을 0으로 만들고 싶다면 이 페이지를 벗어나지 마세요.</span></p></div>
+      <div class="res"><div><b><a href="https://noonnu.cc" target="_blank" rel="noopener">Noonnu 눈누 ↗</a></b><span class="tagline"><span class="en-t">DOWNLOAD · BROWSE</span><span class="ko-t">다운로드 · 탐색</span></span></div><p><span class="en-t">The definitive Korean free-font directory. Korean-language UI, but the per-font license grid is readable with any translator — check the embedding (임베딩) row.</span><span class="ko-t">한국 무료 폰트의 결정판 디렉터리입니다. 폰트별 라이선스 표에서 임베딩 항목을 꼭 확인하세요.</span></p></div>
+      <div class="res"><div><b><a href="https://github.com/orioncactus/pretendard" target="_blank" rel="noopener">Pretendard ↗</a></b><span class="tagline"><span class="en-t">DOWNLOAD · UI STANDARD</span><span class="ko-t">다운로드 · UI 표준</span></span></div><p><span class="en-t">If a Korean app looks modern, odds are it's set in this. Static + variable, English docs, OFL.</span><span class="ko-t">요즘 세련돼 보이는 한국 앱이라면 십중팔구 이 폰트입니다. 고정형과 가변형 모두 제공하고, 영문 문서에 OFL입니다.</span></p></div>
+      <div class="res"><div><b><a href="https://galmuri.quiple.dev" target="_blank" rel="noopener">Galmuri ↗</a></b><span class="tagline"><span class="en-t">DOWNLOAD · PIXEL</span><span class="ko-t">다운로드 · 픽셀</span></span></div><p><span class="en-t">A serious bitmap font family for retro games — multiple pixel sizes, wide glyph coverage, OFL.</span><span class="ko-t">레트로 게임을 위한 본격 비트맵 폰트 패밀리입니다. 픽셀 크기가 다양하고 글리프 커버리지가 넓으며, OFL입니다.</span></p></div>
+      <div class="res"><div><b><a href="https://neodgm.dalgona.dev" target="_blank" rel="noopener">Neo둥근모 ↗</a></b><span class="tagline"><span class="en-t">DOWNLOAD · PIXEL</span><span class="ko-t">다운로드 · 픽셀</span></span></div><p><span class="en-t">The 90s Korean PC font, revived and open-sourced. Instant nostalgia for Korean players over thirty.</span><span class="ko-t">90년대 한국 PC 폰트를 오픈소스로 되살린 프로젝트입니다. 서른 넘은 한국 플레이어라면 보자마자 향수에 젖는 폰트죠.</span></p></div>
+      <div class="res"><div><b><a href="https://www.woowahan.com/fonts" target="_blank" rel="noopener">Woowahan fonts ↗</a></b><span class="tagline"><span class="en-t">DOWNLOAD · DISPLAY</span><span class="ko-t">다운로드 · 디스플레이</span></span></div><p><span class="en-t">Free personality fonts from the Baemin brand — the source family of Jua and Do Hyeon.</span><span class="ko-t">배민 브랜드의 개성 넘치는 무료 폰트들입니다. 주아·도현이 여기서 나왔습니다.</span></p></div>
+      <div class="res"><div><b><a href="https://noonnu.cc" target="_blank" rel="noopener">More: brand free fonts ↗</a></b><span class="tagline"><span class="en-t">VIA NOONNU</span><span class="ko-t">눈누에서 검색</span></span></div><p><span class="en-t">Korean companies routinely release quality free fonts (Cafe24, GmarketSans, and many more). Noonnu indexes them all — search there rather than hunting individual brand sites.</span><span class="ko-t">한국 기업들은 수준 높은 무료 폰트를 꾸준히 내놓습니다(카페24, G마켓 산스 등). 눈누가 대부분 모아두고 있으니, 브랜드 사이트를 일일이 뒤지지 말고 거기서 검색하세요.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="disclaimer">
+      <p><span class="en-t"><b>Hangul for Game Devs</b> hosts no font files and sells nothing. Every download link points to the original distributor, and every license summary here is informational — the distributor's page is the only version that counts. Licenses change; check before you ship.</span><span class="ko-t"><b>Hangul for Game Devs</b>는 폰트 파일을 호스팅하지 않으며 아무것도 판매하지 않습니다. 모든 다운로드 링크는 원 배포처로 연결되며, 이곳의 라이선스 요약은 참고용일 뿐입니다. 효력이 있는 건 배포처 페이지뿐이고, 라이선스는 바뀌기도 합니다. 출시 전에 꼭 확인하세요.</span></p>
+      <p style="margin-top:14px;font-family:var(--mono);font-size:12px"><span class="en-t">Last checked: July 2026</span><span class="ko-t">마지막 확인: 2026년 7월</span></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang){
+    document.documentElement.classList.toggle('ko', lang === 'ko');
+    document.documentElement.lang = lang;
+    try{ localStorage.setItem('hfgd-lang', lang); }catch(e){}
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    document.title = lang === 'ko'
+      ? 'Hangul for Game Devs — 게임에 맞는 한글 폰트 고르기'
+      : 'Hangul for Game Devs — Free Korean Fonts, Licensing & Embedding Guide';
+  }
+  // Sync the toggle buttons / title / lang attribute with whatever the <head>
+  // script already applied (saved preference — defaults to English otherwise).
+  // The class is already correct by this point, so this causes no flash.
+  setLang(document.documentElement.classList.contains('ko') ? 'ko' : 'en');
+</script>
+
+<div class="kofi-fixed">
+  <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+  <script type='text/javascript'>
+    try{
+      if (typeof kofiwidget2 !== 'undefined') {
+        kofiwidget2.init('Support me on Ko-fi', '#72a4f2', 'C1I722D37P');
+        kofiwidget2.draw();
+      }
+    }catch(e){ console.warn('Ko-fi widget failed to load.', e); }
+  </script>
+</div>
+
+</body>
+</html>
