@@ -19,6 +19,7 @@
 <meta name="keywords" content="korean font, hangul font, free korean font, korean font for games, korean font license, embed korean font unity, hangul font game, korean font commercial use, korean pixel font">
 <link rel="canonical" href="https://graypicnic.github.io/Hangulfontguide/">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://graypicnic.github.io/Hangulfontguide/">
 <meta property="og:title" content="Hangul for Game Devs — Free Korean Fonts, Licensing & Embedding Guide">
 <meta property="og:description" content="Free Korean fonts by use case, which licenses allow embedding in a shipped game build, and how to subset and embed Hangul in Unity, Unreal, and Godot.">
 <meta name="twitter:card" content="summary">
@@ -493,12 +494,12 @@
     <!-- PIXEL -->
     <div class="cat">
       <div class="cat-title"><h3><span class="en-t">Pixel &amp; retro</span><span class="ko-t">픽셀 &amp; 레트로</span></h3><span class="use">도트 · BITMAP</span></div>
-      <p class="cat-desc"><span class="en-t">Drawing 2,350+ syllables in pixels is heroic work, so good free options are rare — but they exist. Render at exact integer multiples of the design size (9px, 11px, 18px, 22px…) or the grid smears.</span><span class="ko-t">2,350자가 넘는 글자를 픽셀로 일일이 그리는 건 보통 일이 아니라서, 쓸 만한 무료 폰트가 드뭅니다. 그래도 있긴 있습니다. 렌더링은 설계 크기의 정수 배수(9px, 11px, 18px, 22px…)로 하세요. 어기면 격자가 뭉개집니다.</span></p>
+      <p class="cat-desc"><span class="en-t">Drawing 2,350+ syllables in pixels is heroic work, so good free options are rare — but they exist. Render at exact integer multiples of the design size, and note the design size is what the distributor states, not the number in the name: Galmuri11 is drawn on a 12px grid, so use 12, 24, 36px… or the grid smears.</span><span class="ko-t">2,350자가 넘는 글자를 픽셀로 일일이 그리는 건 보통 일이 아니라서, 쓸 만한 무료 폰트가 드뭅니다. 그래도 있긴 있습니다. 렌더링은 설계 크기의 정수 배수로 하세요. 기준은 이름의 숫자가 아니라 배포처가 명시한 크기입니다. 예를 들어 Galmuri11은 12px 격자로 그려졌으니 12, 24, 36px…로 써야 합니다. 어기면 격자가 뭉개집니다.</span></p>
       <div class="font-grid">
         <div class="font-card">
-          <div class="specimen f-galmuri" style="font-size:22px">새로운 모험이 시작된다<small style="font-family:var(--body)">A new adventure begins</small></div>
+          <div class="specimen f-galmuri" style="font-size:24px">새로운 모험이 시작된다<small style="font-family:var(--body)">A new adventure begins</small></div>
           <div class="font-meta"><span class="font-name"><a href="https://galmuri.quiple.dev" target="_blank" rel="noopener">Galmuri ↗</a></span><span class="lic lic-ofl">OFL</span></div>
-          <p class="font-note"><span class="en-t">7·9·11px families · covers Korean + Japanese + Latin</span><span class="ko-t">7·9·11px 패밀리 · 한글 + 일본어 + 라틴 지원</span></p>
+          <p class="font-note"><span class="en-t">4 sizes, 8–15px grids · covers Korean + Japanese + Latin</span><span class="ko-t">8–15px 격자, 4가지 크기 · 한글 + 일본어 + 라틴 지원</span></p>
         </div>
         <div class="font-card">
           <div class="specimen" style="font-family:var(--kr);font-weight:700;color:var(--muted)">네오둥근모<small><span class="en-t">Preview on the project page</span><span class="ko-t">프로젝트 페이지에서 미리보기</span></small></div>
@@ -599,12 +600,12 @@
     <div class="tip-grid">
       <div class="card">
         <h3><span class="en-t">Subset the font — it's the biggest win</span><span class="ko-t">서브셋팅 — 가장 확실한 용량 절감</span></h3>
-        <p><span class="en-t">You almost never need all 11,172 syllables. Subsetting to the KS X 1001 set of 2,350 (or just the glyphs your localization actually uses) can cut a multi-megabyte font dramatically. With <code class="inline">fonttools</code> installed:</span><span class="ko-t">11,172자가 전부 필요한 경우는 거의 없습니다. KS X 1001의 2,350자(또는 로컬라이제이션에 실제로 쓰이는 글자만)로 서브셋팅하면 수 MB짜리 폰트를 극적으로 줄일 수 있습니다. <code class="inline">fonttools</code> 설치 후:</span></p>
+        <p><span class="en-t">You almost never need everything a Korean font ships (hanja, symbols, extra CJK punctuation). The command below strips a font down to modern Hangul plus basic Latin — it keeps all 11,172 syllables, so it stays safe even for player-typed text. With <code class="inline">fonttools</code> installed:</span><span class="ko-t">한글 폰트에 담긴 모든 것(한자, 기호, 부가 CJK 문장부호)이 필요한 경우는 거의 없습니다. 아래 명령어는 폰트를 현대 한글 + 기본 라틴만 남기고 잘라냅니다. 11,172자를 전부 유지하므로 플레이어가 직접 입력하는 텍스트에도 안전합니다. <code class="inline">fonttools</code> 설치 후:</span></p>
         <pre>pyftsubset NotoSansKR-Regular.ttf \
   --unicodes="U+AC00-D7A3,U+1100-11FF,U+3130-318F,U+0020-007E" \
   --flavor=woff2 \
   --output-file=NotoSansKR-subset.woff2</pre>
-        <p style="margin-top:12px"><span class="en-t">Tighter still: extract the unique characters from your Korean localization file and pass them with <code class="inline">--text-file=</code>. Confirm the license permits modification first (OFL does).</span><span class="ko-t">더 줄이고 싶다면 한국어 로컬라이제이션 파일에서 실제로 쓰인 문자만 추출해 <code class="inline">--text-file=</code>로 넘기세요. 단, 라이선스가 수정을 허용하는지 먼저 확인해야 합니다(OFL은 허용합니다).</span></p>
+        <p style="margin-top:12px"><span class="en-t">Tighter still: if your Korean strings are fixed (no player input), extract the unique characters from your localization file and pass them with <code class="inline">--text-file=</code> — fixed UI text rarely needs more than a few hundred syllables. Confirm the license permits modification first (OFL does).</span><span class="ko-t">더 줄이고 싶다면, 한국어 문자열이 고정되어 있는 경우(플레이어 입력이 없는 경우) 로컬라이제이션 파일에서 실제로 쓰인 문자만 추출해 <code class="inline">--text-file=</code>로 넘기세요. 고정된 UI 텍스트에 필요한 글자는 수백 자를 넘지 않는 경우가 대부분입니다. 단, 라이선스가 수정을 허용하는지 먼저 확인해야 합니다(OFL은 허용합니다).</span></p>
       </div>
 
       <div class="card">
@@ -632,7 +633,7 @@
         <p class="pangram">다람쥐 헌 쳇바퀴에 타고파</p>
         <p class="demo-note"><span class="en-t">Korea's classic pangram — "I want to ride a squirrel's old treadmill."</span><span class="ko-t">한국의 대표 팬그램입니다.</span></p>
         <p class="pangram" style="margin-top:14px">뷁 밝 흙 값 짧 넓 삶</p>
-        <p class="demo-note"><span class="en-t">Maximum-density blocks — if these hold up at your smallest font size, everything will.</span><span class="ko-t">획 밀도가 가장 높은 글자들입니다. 최소 폰트 크기에서 이 글자들이 버티면 나머지는 전부 괜찮습니다.</span></p>
+        <p class="demo-note"><span class="en-t">Maximum-density blocks — if these hold up at your smallest font size, everything will. Bonus: 뷁 sits outside the 2,350-syllable KS X 1001 set, so if it renders as an empty box, your font or subset doesn't cover full modern Hangul.</span><span class="ko-t">획 밀도가 가장 높은 글자들입니다. 최소 폰트 크기에서 이 글자들이 버티면 나머지는 전부 괜찮습니다. 덤으로 '뷁'은 KS X 1001 2,350자 밖의 글자라, 네모 박스로 보인다면 폰트나 서브셋이 현대 한글 전체를 지원하지 않는다는 뜻입니다.</span></p>
       </div>
     </div>
   </div>
@@ -663,7 +664,7 @@
   <div class="wrap">
     <div class="disclaimer">
       <p><span class="en-t"><b>Hangul for Game Devs</b> hosts no font files and sells nothing. Every download link points to the original distributor, and every license summary here is informational — the distributor's page is the only version that counts. Licenses change; check before you ship.</span><span class="ko-t"><b>Hangul for Game Devs</b>는 폰트 파일을 호스팅하지 않으며 아무것도 판매하지 않습니다. 모든 다운로드 링크는 원 배포처로 연결되며, 이곳의 라이선스 요약은 참고용일 뿐입니다. 효력이 있는 건 배포처 페이지뿐이고, 라이선스는 바뀌기도 합니다. 출시 전에 꼭 확인하세요.</span></p>
-      <p style="margin-top:14px;font-family:var(--mono);font-size:12px"><span class="en-t">Last checked: July 2026</span><span class="ko-t">마지막 확인: 2026년 7월</span></p>
+      <p style="margin-top:14px;font-family:var(--mono);font-size:12px"><span class="en-t">Last checked: August 2026</span><span class="ko-t">마지막 확인: 2026년 8월</span></p>
     </div>
   </div>
 </footer>
